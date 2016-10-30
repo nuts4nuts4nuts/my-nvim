@@ -127,16 +127,17 @@ let g:fzf_colors =
 " CTRL-N and CTRL-P will be automatically bound to next-history and
 " previous-history instead of down and up. If you don't like the change,
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
-let g:fzf_history_dir = '~/.fzf-history'
+let g:fzf_history_dir = '~/.local/share/fzf-history'
 ```
 
 #### Command-local options
 
 ```vim
 " [Files] Extra options for fzf
-"         e.g. File preview using CodeRay (http://coderay.rubychan.de/)
+"   e.g. File preview using Highlight
+"        (http://www.andre-simon.de/doku/highlight/en/highlight.html)
 let g:fzf_files_options =
-  \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+  \ '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
 
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
@@ -156,6 +157,11 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 You can use autoload functions to define your own commands.
 
 ```vim
+" git grep
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep('git grep --line-number '.shellescape(<q-args>), 0, <bang>0)
+
+" We use VimEnter event so that the code is run after fzf.vim is loaded
 autocmd VimEnter * command! Colors
   \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'})
 ```
