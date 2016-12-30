@@ -12,6 +12,10 @@ nnoremap <Leader>hl :nohl<Cr>
 nnoremap <Leader>a ggVG
 " Open this file
 nnoremap <Leader>vim :e $MYVIMRC<Cr>
+" Open a new tab
+nnoremap <Leader>te :tabe<Cr>
+" Close the current tab
+nnoremap <Leader>tc :tabc<Cr>
 
 " Bring Y in line with D and C
 nnoremap Y y$
