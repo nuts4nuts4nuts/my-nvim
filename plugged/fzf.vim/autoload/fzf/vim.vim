@@ -29,8 +29,44 @@ set cpo&vim
 " ------------------------------------------------------------------
 
 let s:layout_keys = ['window', 'up', 'down', 'left', 'right']
+let s:which_bin = executable('ruby') ? '/bin/preview.rb' : '/bin/preview.sh'
+let s:bin = { 'preview': expand('<sfile>:h:h:h') . s:which_bin }
+let s:TYPE = {'dict': type({}), 'funcref': type(function('call')), 'string': type('')}
 
-function s:remove_layout(opts)
+" [[options to wrap], preview window expression, [toggle-preview keys...]]
+function! fzf#vim#with_preview(...)
+  " Default options
+  let options = {}
+  let window = 'right'
+
+  let args = copy(a:000)
+
+  " Options to wrap
+  if len(args) && type(args[0]) == s:TYPE.dict
+    let options = copy(args[0])
+    call remove(args, 0)
+  endif
+
+  " Preview window
+  if len(args) && type(args[0]) == s:TYPE.string
+    if args[0] !~# '^\(up\|down\|left\|right\)'
+      throw 'invalid preview window: '.args[0]
+    endif
+    let window = args[0]
+    call remove(args, 0)
+  endif
+
+  let preview = printf(' --preview-window %s --preview "%s"\ %s\ {}',
+        \ window,
+        \ shellescape(s:bin.preview), window =~ 'up\|down' ? '-v' : '')
+  if len(args)
+    let preview .= ' --bind '.shellescape(join(map(args, 'v:val.":toggle-preview"'), ','))
+  endif
+  let options.options = get(options, 'options', '').preview
+  return options
+endfunction
+
+function! s:remove_layout(opts)
   for key in s:layout_keys
     if has_key(a:opts, key)
       call remove(a:opts, key)
@@ -116,7 +152,7 @@ for s:color_name in keys(s:ansi)
 endfor
 
 function! s:buflisted()
-  return filter(range(1, bufnr('$')), 'buflisted(v:val)')
+  return filter(range(1, bufnr('$')), 'buflisted(v:val) && getbufvar(v:val, "&filetype") != "qf"')
 endfunction
 
 function! s:defaults()
@@ -195,6 +231,11 @@ endfunction
 " ------------------------------------------------------------------
 " Files
 " ------------------------------------------------------------------
+function! s:shortpath()
+  let short = pathshorten(fnamemodify(getcwd(), ':~:.'))
+  return empty(short) ? '~/' : short . (short =~ '/$' ? '' : '/')
+endfunction
+
 function! fzf#vim#files(dir, ...)
   let args = {'options': '-m '.get(g:, 'fzf_files_options', '')}
   if !empty(a:dir)
@@ -205,7 +246,7 @@ function! fzf#vim#files(dir, ...)
     let args.dir = dir
     let args.options .= ' --prompt '.shellescape(dir)
   else
-    let args.options .= ' --prompt '.shellescape(pathshorten(getcwd())).'/'
+    let args.options .= ' --prompt '.shellescape(s:shortpath())
   endif
 
   return s:fzf('files', args, a:000)
@@ -317,8 +358,8 @@ endfunction
 " ------------------------------------------------------------------
 function! fzf#vim#colors(...)
   return s:fzf('colors', {
-  \ 'source':  map(split(globpath(&rtp, "colors/*.vim"), "\n"),
-  \               "substitute(fnamemodify(v:val, ':t'), '\\..\\{-}$', '', '')"),
+  \ 'source':  s:uniq(map(split(globpath(&rtp, "colors/*.vim"), "\n"),
+  \               "substitute(fnamemodify(v:val, ':t'), '\\..\\{-}$', '', '')")),
   \ 'sink':    'colo',
   \ 'options': '+m --prompt="Colors> "'
   \}, a:000)
@@ -403,9 +444,21 @@ endfunction
 " GFiles[?]
 " ------------------------------------------------------------------
 
-function! fzf#vim#gitfiles(args, ...)
+" helper function to get the git root. Uses vim-fugitive if available for EXTRA SPEED!
+function! s:get_git_root()
+  if exists('*fugitive#repo')
+    try
+      return fugitive#repo().tree()
+    catch
+    endtry
+  endif
   let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
-  if v:shell_error
+  return v:shell_error ? '' : root
+endfunction
+
+function! fzf#vim#gitfiles(args, ...)
+  let root = s:get_git_root()
+  if empty(root)
     return s:warn('Not in git repo')
   endif
   if a:args != '?'
@@ -422,7 +475,7 @@ function! fzf#vim#gitfiles(args, ...)
   let wrapped = fzf#wrap({
   \ 'source':  'git -c color.status=always status --short --untracked-files=all',
   \ 'dir':     root,
-  \ 'options': '--ansi --multi --nth 2..,.. --prompt "GitFiles?> " --preview ''sh -c "(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500"'''
+  \ 'options': '--ansi --multi --nth 2..,.. --tiebreak=index --prompt "GitFiles?> " --preview ''sh -c "(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500"'''
   \})
   call s:remove_layout(wrapped)
   let wrapped.common_sink = remove(wrapped, 'sink*')
@@ -546,9 +599,12 @@ endfunction
 
 " query, [[ag options], options]
 function! fzf#vim#ag(query, ...)
+  if type(a:query) != s:TYPE.string
+    return s:warn('Invalid query argument')
+  endif
   let query = empty(a:query) ? '^(?=.)' : a:query
   let args = copy(a:000)
-  let ag_opts = len(args) > 1 ? remove(args, 0) : ''
+  let ag_opts = len(args) > 1 && type(args[0]) == s:TYPE.string ? remove(args, 0) : ''
   let command = ag_opts . ' ' . s:q1(query)
   return call('fzf#vim#ag_raw', insert(args, command, 0))
 endfunction
@@ -638,8 +694,8 @@ endfunction
 function! fzf#vim#buffer_tags(query, ...)
   let args = copy(a:000)
   let tag_cmds = len(args) > 1 ? remove(args, 0) : [
-    \ printf('ctags -f - --sort=no --excmd=number --language-force=%s %s', &filetype, expand('%:S')),
-    \ printf('ctags -f - --sort=no --excmd=number %s', expand('%:S'))]
+    \ printf('ctags -f - --sort=no --excmd=number --language-force=%s %s 2>/dev/null', &filetype, expand('%:S')),
+    \ printf('ctags -f - --sort=no --excmd=number %s 2>/dev/null', expand('%:S'))]
   try
     return s:fzf('btags', {
     \ 'source':  s:btags_source(tag_cmds),
@@ -695,7 +751,7 @@ function! fzf#vim#tags(query, ...)
     echohl None
     call inputrestore()
     redraw
-    if gen =~ '^y'
+    if gen =~? '^y'
       call s:warn('Preparing tags')
       call system(get(g:, 'fzf_tags_command', 'ctags -R'))
       if empty(tagfiles())
@@ -938,8 +994,8 @@ function! s:commits_sink(lines)
 endfunction
 
 function! s:commits(buffer_local, args)
-  let s:git_root = s:chomp(system('git rev-parse --show-toplevel'))
-  if v:shell_error
+  let s:git_root = s:get_git_root()
+  if empty(s:git_root)
     return s:warn('Not in git repository')
   endif
 
@@ -1093,8 +1149,6 @@ function! s:complete_insert(lines)
     execute "normal! \<esc>la"
   endif
 endfunction
-
-let s:TYPE = {'dict': type({}), 'funcref': type(function('call'))}
 
 function! s:eval(dict, key, arg)
   if has_key(a:dict, a:key) && type(a:dict[a:key]) == s:TYPE.funcref
