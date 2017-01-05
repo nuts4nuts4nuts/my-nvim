@@ -4,6 +4,7 @@ let mapleader=" "
 " Save easily
 nnoremap <Leader>w :w<Cr>
 nnoremap <Leader>wa :wa<Cr>
+nnoremap <Leader>wq :wq<Cr>
 nnoremap <Leader><SPACE> :w<Cr>
 " Quit easily
 nnoremap <Leader>q :q<Cr>
