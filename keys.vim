@@ -11,7 +11,7 @@ nnoremap <Leader>q :q<Cr>
 nnoremap <Leader>hl :nohl<Cr>
 " Highlight the whole buffer
 nnoremap <Leader>a ggVG
-" Open this file
+" Open the vimrc
 nnoremap <Leader>vim :e $MYVIMRC<Cr>
 
 " Bring Y in line with D and C
