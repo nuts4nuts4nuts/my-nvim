@@ -20,9 +20,11 @@ nnoremap <Leader>te :tabe<Cr>
 nnoremap <Leader>tc :tabc<Cr>
 
 " Fuzzy find files
-nnoremap <Leader>f :Files<Cr>
+nnoremap <Leader>e :Files<Cr>
 " Fuzzy find files in ~
-nnoremap <Leader>fh :Files ~<Cr>
+nnoremap <Leader>eh :Files ~<Cr>
+" Fuzzy find lines
+nnoremap / :BLines<Cr>
 
 " Bring Y in line with D and C
 nnoremap Y y$

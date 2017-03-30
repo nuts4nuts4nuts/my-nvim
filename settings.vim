@@ -18,3 +18,8 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 filetype plugin indent on
+
+" Omnisharp business
+filetype plugin on
+" Use fzf with OmniSharp
+let g:OmniSharp_selector_ui = 'fzf'
