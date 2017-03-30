@@ -11,6 +11,7 @@ set scrolloff=4
 set sidescrolloff=5
 " Pipe cursor in insert mode
 :let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
 " Line highlights
 " Finished
 au BufRead,BufNewFile *.txt   syntax match FinishedMatch "\v\+\+.*"
@@ -26,3 +27,16 @@ hi link StrikeoutMatch StrikeoutColor
 au BufRead,BufNewFile *.txt   syntax match TitleMatch "\v__.*"
 hi def  TitleColor   ctermbg=white ctermfg=black    guibg=white guifg=black
 hi link TitleMatch TitleColor
+
+" Auto format elm code
+let g:elm_format_autosave = 1
+" Use filetype specific indentation
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+filetype plugin indent on
+
+" Omnisharp business
+filetype plugin on
+" Use fzf with OmniSharp
+let g:OmniSharp_selector_ui = 'fzf'
