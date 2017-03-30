@@ -10,4 +10,11 @@ set list
 set scrolloff=4
 set sidescrolloff=5
 " Pipe cursor in insert mode
-:let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+" Auto format elm code
+let g:elm_format_autosave = 1
+" Use filetype specific indentation
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+filetype plugin indent on

@@ -18,6 +18,11 @@ nnoremap <Leader>te :tabe<Cr>
 " Close the current tab
 nnoremap <Leader>tc :tabc<Cr>
 
+" Fuzzy find files
+nnoremap <Leader>f :Files<Cr>
+" Fuzzy find files in ~
+nnoremap <Leader>fh :Files ~<Cr>
+
 " Bring Y in line with D and C
 nnoremap Y y$
 
