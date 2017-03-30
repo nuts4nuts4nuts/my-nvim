@@ -4,6 +4,7 @@ let mapleader=" "
 " Save easily
 nnoremap <Leader>w :w<Cr>
 nnoremap <Leader>wa :wa<Cr>
+nnoremap <Leader>wq :wq<Cr>
 nnoremap <Leader><SPACE> :w<Cr>
 " Quit easily
 nnoremap <Leader>q :q<Cr>
@@ -11,7 +12,7 @@ nnoremap <Leader>q :q<Cr>
 nnoremap <Leader>hl :nohl<Cr>
 " Highlight the whole buffer
 nnoremap <Leader>a ggVG
-" Open this file
+" Open the vimrc
 nnoremap <Leader>vim :e $MYVIMRC<Cr>
 " Open a new tab
 nnoremap <Leader>te :tabe<Cr>
