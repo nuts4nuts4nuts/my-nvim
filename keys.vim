@@ -25,3 +25,9 @@ nnoremap Y y$
 " Make indenting in visual mode more fun
 vnoremap > >gv
 vnoremap < <gv
+
+" Highlight lines
+nnoremap <Leader>hu :s/++//ge:s/\~\~//ge:s/__//ge :nohl<Cr>
+nnoremap <Leader>hf :s/++//ge:s/\~\~//ge:s/__//ge I++ :nohl<Cr>
+nnoremap <Leader>hs :s/++//ge:s/\~\~//ge:s/__//ge I~~ :nohl<Cr>
+nnoremap <Leader>ht :s/++//ge:s/\~\~//ge:s/__//ge I__ :nohl<Cr>
