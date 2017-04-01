@@ -40,3 +40,6 @@ filetype plugin indent on
 filetype plugin on
 " Use fzf with OmniSharp
 let g:OmniSharp_selector_ui = 'fzf'
+
+" Auto run Neomake every write
+autocmd! BufWritePost * Neomake
