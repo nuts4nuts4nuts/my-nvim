@@ -27,14 +27,15 @@ vnoremap > >gv
 vnoremap < <gv
 
 " Highlight lines
-nnoremap <Leader>hu :s/++//ge:s/\~\~//ge:s/__//ge :nohl<Cr>
-nnoremap <Leader>hf :s/++//ge:s/\~\~//ge:s/__//ge I++ :nohl<Cr>
-nnoremap <Leader>hs :s/++//ge:s/\~\~//ge:s/__//ge I~~ :nohl<Cr>
-nnoremap <Leader>ht :s/++//ge:s/\~\~//ge:s/__//ge I__ :nohl<Cr>
+nnoremap <Leader>hu :s/++//ge:s/\~\~//ge:s/__//ge:s/--//ge :nohl<Cr>
+nnoremap <Leader>hf :s/++//ge:s/\~\~//ge:s/__//ge:s/--//ge I++ :nohl<Cr>
+nnoremap <Leader>hs :s/++//ge:s/\~\~//ge:s/__//ge:s/--//ge I~~ :nohl<Cr>
+nnoremap <Leader>ht :s/++//ge:s/\~\~//ge:s/__//ge:s/--//ge I__ :nohl<Cr>
+nnoremap <Leader>hn :s/++//ge:s/\~\~//ge:s/__//ge:s/--//ge I-- :nohl<Cr>
 
 " Fuzzy find files
 nnoremap <Leader>e :Files<Cr>
 " Fuzzy find files in ~
 nnoremap <Leader>eh :Files ~<Cr>
 " Fuzzy find lines
-nnoremap / :BLines<Cr>
+" nnoremap / :BLines<Cr>

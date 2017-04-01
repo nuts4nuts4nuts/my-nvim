@@ -18,6 +18,11 @@ au BufRead,BufNewFile *.txt   syntax match FinishedMatch "\v\+\+.*"
 hi def  FinishedColor   ctermbg=darkgreen ctermfg=white    guibg=darkgreen guifg=lightgreen
 hi link FinishedMatch FinishedColor
 
+" NotDoing
+au BufRead,BufNewFile *.txt   syntax match NotDoingMatch "\v--.*"
+hi def  NotDoingColor   ctermbg=darkred ctermfg=white    guibg=darkred guifg=lightred
+hi link NotDoingMatch NotDoingColor
+
 " Started
 au BufRead,BufNewFile *.txt   syntax match StrikeoutMatch "\v\~\~.*"
 hi def  StrikeoutColor   ctermbg=yellow ctermfg=white    guibg=#cc6600 guifg=pink
