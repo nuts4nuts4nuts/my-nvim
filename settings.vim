@@ -33,6 +33,9 @@ au BufRead,BufNewFile *.txt   syntax match TitleMatch "\v__.*"
 hi def  TitleColor   ctermbg=white ctermfg=black    guibg=white guifg=black
 hi link TitleMatch TitleColor
 
+" Deoplete stuff
+let g:deoplete#enable_at_startup = 1
+
 " Auto format elm code
 let g:elm_format_autosave = 1
 " Use filetype specific indentation
@@ -45,6 +48,3 @@ filetype plugin indent on
 filetype plugin on
 " Use fzf with OmniSharp
 let g:OmniSharp_selector_ui = 'fzf'
-
-" Auto run Neomake every write
-autocmd! BufWritePost * Neomake

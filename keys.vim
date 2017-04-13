@@ -18,6 +18,8 @@ nnoremap <Leader>vim :e $MYVIMRC<Cr>
 nnoremap <Leader>te :tabe<Cr>
 " Close the current tab
 nnoremap <Leader>tc :tabc<Cr>
+" Move to the next tab
+nnoremap <Leader>tn :tabNext<Cr>
 
 " Bring Y in line with D and C
 nnoremap Y y$
@@ -37,5 +39,3 @@ nnoremap <Leader>hn :s/++//ge:s/\~\~//ge:s/__//ge:s/--//ge I-- :nohl<Cr>
 nnoremap <Leader>e :Files<Cr>
 " Fuzzy find files in ~
 nnoremap <Leader>eh :Files ~<Cr>
-" Fuzzy find lines
-" nnoremap / :BLines<Cr>
