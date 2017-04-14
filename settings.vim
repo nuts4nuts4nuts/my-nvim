@@ -48,3 +48,7 @@ filetype plugin indent on
 filetype plugin on
 " Use fzf with OmniSharp
 let g:OmniSharp_selector_ui = 'fzf'
+
+" Highlight line when in insert mode
+hi CursorLine cterm=NONE ctermbg=16
+autocmd InsertEnter,InsertLeave * set cul!
