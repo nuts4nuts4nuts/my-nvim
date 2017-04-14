@@ -35,7 +35,11 @@ nnoremap <Leader>hs :s/++//ge:s/\~\~//ge:s/__//ge:s/--//ge I~~ :nohl<Cr>
 nnoremap <Leader>ht :s/++//ge:s/\~\~//ge:s/__//ge:s/--//ge I__ :nohl<Cr>
 nnoremap <Leader>hn :s/++//ge:s/\~\~//ge:s/__//ge:s/--//ge I-- :nohl<Cr>
 
-" Fuzzy find files
-nnoremap <Leader>e :Files<Cr>
-" Fuzzy find files in ~
-nnoremap <Leader>eh :Files ~<Cr>
+" Denite fuzzy find files
+nnoremap <Leader>e :Denite file_rec<Cr>
+" Denite fuzzy buffers
+nnoremap <Leader>b :Denite buffer<Cr>
+" Make <Leader>/ normal /
+nnoremap <Leader>/ /
+" Make / Denite /
+nnoremap / :Denite line<Cr>
