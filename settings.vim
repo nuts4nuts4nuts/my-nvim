@@ -1,5 +1,5 @@
 " Cool colors
-colorscheme desert
+colorscheme nova
 " Search all lower = insensitive, any upper = sensitive
 set ignorecase
 set smartcase
@@ -38,8 +38,8 @@ let g:deoplete#enable_at_startup = 1
 let g:elm_format_autosave = 1
 " Use filetype specific indentation
 set expandtab
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 filetype plugin indent on
 
 " Omnisharp business
@@ -51,3 +51,8 @@ let g:OmniSharp_selector_ui = 'fzf'
 set cul
 hi CursorLine cterm=NONE ctermbg=16
 autocmd InsertEnter,InsertLeave * set cul!
+
+" Use eslint through ale
+let g:ale_fixers = {
+    \ 'javascript': ['eslint']
+    \ }
