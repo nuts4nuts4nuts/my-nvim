@@ -70,11 +70,6 @@ filetype plugin on
 " Use fzf with OmniSharp
 let g:OmniSharp_selector_ui = 'fzf'
 
-" Highlight line when in normal mode
-set cul
-hi CursorLine cterm=NONE ctermbg=16
-autocmd InsertEnter,InsertLeave * set cul!
-
 if has('win32')
     colorscheme desert
 endif
@@ -85,16 +80,3 @@ let g:airline#extensions#branch#enabled = 1
 let g:ale_fixers = {
     \ 'javascript': ['eslint']
     \ }
-
-" denite grep with ag
- call denite#custom#source(
- \ 'grep', 'matchers', ['matcher_regexp'])
-
-" use ag for content search
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 'default_opts',
-    \ ['-i', '--vimgrep'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])

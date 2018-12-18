@@ -13,6 +13,7 @@ nnoremap <Leader>a ggVG
 nnoremap <Leader>te :tab split<Cr>
 " Close the current tab
 nnoremap <Leader>tc :tabc<Cr>
+nnoremap <Leader>tk :tabc<Cr>
 
 " Escape with Alt + normal mode key even in gvim
 noremap  <M-j> <Esc>j
@@ -35,16 +36,24 @@ noremap  <M-b> <Esc>b
 noremap! <M-b> <Esc>b
 noremap  <M-a> <Esc>A
 noremap! <M-a> <Esc>A
-noremap  <M-A> <Esc>A
-noremap! <M-A> <Esc>A
+noremap  <M-i> <Esc>I
+noremap! <M-i> <Esc>I
 
-inoremap  <C-w> <Esc><C-w>
-
-" Window controls
+" Split controls
 nnoremap <Leader>h :vsp<Cr>
 nnoremap <Leader>j :sp<Cr><C-w><C-j>
 nnoremap <Leader>k :sp<Cr>
 nnoremap <Leader>l :vsp<Cr><C-w><C-l>
+
+" Faster split movement
+nnoremap  <C-h> <C-w>h
+nnoremap  <C-j> <C-w>j
+nnoremap  <C-k> <C-w>k
+nnoremap  <C-l> <C-w>l
+inoremap  <C-h> <Esc><C-w>h
+inoremap  <C-j> <Esc><C-w>j
+inoremap  <C-k> <Esc><C-w>k
+inoremap  <C-l> <Esc><C-w>l
 
 " toggle semantic highlighting
 nnoremap <Leader>s :SemanticHighlightToggle<Cr>
@@ -56,14 +65,15 @@ nnoremap Y y$
 vnoremap > >gv
 vnoremap < <gv
 
-" Denite fuzzy find files
-nnoremap <Leader>e :Denite file_rec<Cr>
-" Denite fuzzy buffers
-nnoremap <Leader>b :Denite buffer<Cr>
-" Denite fuzzy tags
-nnoremap <Leader>/ :Denite tag<Cr>
-" Denite ag search
-nnoremap <leader>f :DeniteBufferDir -buffer-name=grep -default-action=quickfix grep:::!<CR>
+" Fuzzy finding
+" Files
+nnoremap <Leader>e :Files<Cr>
+" Buffers
+nnoremap <Leader>b :Buffers<Cr>
+" Tags
+nnoremap <Leader>/ :Tags<Cr>
+" Ag cwd
+nnoremap <leader>f :Ag<Cr>
 
 " Toggle between header and source
 nnoremap <Leader>o :call ToggleHCPP()<Cr>
@@ -78,6 +88,9 @@ nnoremap <Leader>^ :0r !/home/djohnston72/bin/cprt %<Cr>
 nnoremap <Leader>d "+d
 nnoremap <Leader>y "+y
 nnoremap <Leader>p "+p
+
+" Map OverCommandLine for substitute previewing
+nnoremap s :OverCommandLine<Cr>%s/
 
 " swap gj j, gk k
 nnoremap j gj
