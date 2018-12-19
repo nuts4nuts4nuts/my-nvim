@@ -14,7 +14,7 @@ set sidescrolloff=3
 " Use filetype specific indentation
 set expandtab
 set shiftwidth=4
-set softtabstop=4
+set tabstop=4
 filetype plugin indent on
 " gvim settings to remove menu bar and toolbar
 set guioptions -=m
@@ -37,6 +37,9 @@ set number
 set hidden
 " disable annoying sticky comments
 autocmd BufNewFile,BufRead * setlocal formatoptions-=ro
+
+" associate .p8 files with the lua filetype
+au BufNewFile,BufRead *.p8 setlocal ft=lua
 
 " Line highlights
 " Finished
