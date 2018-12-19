@@ -14,17 +14,13 @@ set sidescrolloff=3
 " Use filetype specific indentation
 set expandtab
 set shiftwidth=4
-set softtabstop=4
+set tabstop=4
 filetype plugin indent on
 " gvim settings to remove menu bar and toolbar
-set guioptions -=m
-set guioptions -=T
+set guioptions-=m
+set guioptions-=T
 " set gvim font
-if has('win32')
-    set guifont=Consolas:h14:cANSI
-else
-    set guifont=Source\ Code\ Pro\ 13
-endif
+set guifont=Ubuntu\ Mono\ 14,Consolas:h14:cANSI
 
 " incremental search
 set incsearch
@@ -39,6 +35,9 @@ set hidden
 autocmd BufNewFile,BufRead * setlocal formatoptions-=ro
 " Use non-gui tabline
 set guioptions-=e
+
+" associate .p8 files with the lua filetype
+au BufNewFile,BufRead *.p8 setlocal ft=lua
 
 " Line highlights
 " Finished
