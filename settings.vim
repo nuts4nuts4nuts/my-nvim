@@ -17,14 +17,10 @@ set shiftwidth=4
 set tabstop=4
 filetype plugin indent on
 " gvim settings to remove menu bar and toolbar
-set guioptions -=m
-set guioptions -=T
+set guioptions-=m
+set guioptions-=T
 " set gvim font
-if has('win32')
-    set guifont=Consolas:h14:cANSI
-else
-    set guifont=Source\ Code\ Pro\ 13
-endif
+set guifont=Ubuntu\ Mono\ 14,Consolas:h14:cANSI
 
 " incremental search
 set incsearch
