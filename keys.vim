@@ -91,6 +91,7 @@ nnoremap <Leader>p "+p
 
 " Map OverCommandLine for substitute previewing
 nnoremap s :OverCommandLine<Cr>%s/
+vnoremap s :OverCommandLine<Cr>s/
 
 " swap gj j, gk k
 nnoremap j gj
