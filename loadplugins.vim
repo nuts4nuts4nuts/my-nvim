@@ -26,30 +26,14 @@ Plug 'tpope/vim-repeat'
 " Expand the mappings for [] movements 
 Plug 'tpope/vim-unimpaired'
 
-" Compatibility with vim-dispatch for nvim
-Plug 'radenling/vim-dispatch-neovim'
+" fzf
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
-"""""" Shougo stuff
-" Improved autocomlete
-if has('nvim')
-    " Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-    Plug 'Shougo/denite.nvim', {'do': ':UpdateRemotePlugins'}
-else " In vim8 we need to do more stuff to have remote plugins
-    " Plug 'Shougo/deoplete.nvim'
-    Plug 'Shougo/denite.nvim'
-    " Plug 'roxma/nvim-yarp'
-    " Plug 'roxma/vim-hug-neovim-rpc'
-endif
-" let g:deoplete#enable_at_startup = 1
- " Snippets
-" Plug 'Shougo/neosnippet.vim'
-" Default snippets
-" Plug 'Shougo/neosnippet-snippets'
-
-
-" Stuff to replace with shougo
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'junegunn/fzf.vim'
+" Highlights for f and family
+Plug 'unblevable/quick-scope'
+" Interactivity with search and replace
+Plug 'osyo-manga/vim-over'
 
 " Plug 'elmcast/elm-vim'
 " Plug 'OmniSharp/omnisharp-vim'
