@@ -20,7 +20,7 @@ filetype plugin indent on
 set guioptions-=m
 set guioptions-=T
 " set gvim font
-set guifont=Ubuntu\ Mono\ 14,Consolas:h14:cANSI
+set guifont=Source\ Code\ Pro\ 13,Consolas:h14:cANSI
 
 " incremental search
 set incsearch

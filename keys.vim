@@ -78,12 +78,6 @@ nnoremap <leader>f :Ag<Cr>
 " Toggle between header and source
 nnoremap <Leader>o :call ToggleHCPP()<Cr>
 
-" make working directory the directory of the current file
-nnoremap <Leader>% :cd %:p:h<Cr>
-
-" Bloomberg stuff from Josh
-nnoremap <Leader>^ :0r !/home/djohnston72/bin/cprt %<Cr>
-
 " Cut, copy, and paste from the clipboard more easily
 nnoremap <Leader>d "+d
 nnoremap <Leader>y "+y
@@ -92,6 +86,14 @@ nnoremap <Leader>p "+p
 " Map OverCommandLine for substitute previewing
 nnoremap s :OverCommandLine<Cr>%s/
 vnoremap s :OverCommandLine<Cr>s/
+
+" For doing stuff with what's under the cursor
+nnoremap <leader>8f :Ag <C-r><C-w><Cr>
+nnoremap <leader>*f :Ag <C-r><C-w><Cr>
+
+" Make working directory the directory of the current file
+nnoremap <Leader>5 :cd %:p:h<Cr>
+nnoremap <Leader>% :cd %:p:h<Cr>
 
 " swap gj j, gk k
 nnoremap j gj

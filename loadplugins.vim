@@ -30,8 +30,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" Highlights for f and family
-Plug 'unblevable/quick-scope'
+" Repeat f and f over lines
+Plug 'rhysd/clever-f.vim'
 " Interactivity with search and replace
 Plug 'osyo-manga/vim-over'
 
