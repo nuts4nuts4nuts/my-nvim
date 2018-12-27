@@ -80,7 +80,9 @@ nnoremap <Leader>o :call ToggleHCPP()<Cr>
 
 " Cut, copy, and paste from the clipboard more easily
 nnoremap <Leader>d "+d
+nnoremap <Leader>D "+D
 nnoremap <Leader>y "+y
+nnoremap <Leader>Y "+Y
 nnoremap <Leader>p "+p
 
 " Map OverCommandLine for substitute previewing
@@ -88,8 +90,8 @@ nnoremap s :OverCommandLine<Cr>%s/
 vnoremap s :OverCommandLine<Cr>s/
 
 " For doing stuff with what's under the cursor
-nnoremap <leader>8f :Ag <C-r><C-w><Cr>
-nnoremap <leader>*f :Ag <C-r><C-w><Cr>
+noremap <leader>8f :Ag <C-r><C-w><Cr>
+noremap <leader>*f :Ag <C-r><C-w><Cr>
 
 " Make working directory the directory of the current file
 nnoremap <Leader>5 :cd %:p:h<Cr>
@@ -101,12 +103,10 @@ nnoremap gj j
 nnoremap k gk
 nnoremap gk k
 
-" neosnippet stuff
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+" Snippet mapping
+let g:UltiSnipsExpandTrigger="<C-k>"
+let g:UltiSnipsJumpForwardTrigger="<C-n>"
+let g:UltiSnipsJumpBackwardTrigger="<C-p>"
 
 " For conceal markers.
 if has('conceal')

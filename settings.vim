@@ -1,5 +1,6 @@
 " Cool colors
-colorscheme nova
+set termguicolors
+colorscheme gruvbox
 " Search all lower = insensitive, any upper = sensitive
 set ignorecase
 set smartcase
@@ -70,6 +71,13 @@ let g:elm_format_autosave = 1
 filetype plugin on
 " Use fzf with OmniSharp
 let g:OmniSharp_selector_ui = 'fzf'
+
+" Copied from fzf.vim docs
+" Enable per-command history.
+" CTRL-N and CTRL-P will be automatically bound to next-history and
+" previous-history instead of down and up. If you don't like the change,
+" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
+let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 if has('win32')
     colorscheme desert

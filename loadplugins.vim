@@ -1,8 +1,9 @@
 " Plugins
 call plug#begin()
-" Nova color scheme stuff
+" Color scheme stuff
 Plug 'sheerun/vim-polyglot'
 Plug 'trevordmiller/nova-vim'
+Plug 'morhetz/gruvbox'
 
 " Semantic highlighting
 Plug 'jaxbot/semantic-highlight.vim'
@@ -23,7 +24,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-speeddating'
 " Make . work for some plugin action too (by default surround, speeddating, unimpaired, easyclip)
 Plug 'tpope/vim-repeat'
-" Expand the mappings for [] movements 
+" Expand the mappings for [] movements
 Plug 'tpope/vim-unimpaired'
 
 " fzf
@@ -34,6 +35,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'rhysd/clever-f.vim'
 " Interactivity with search and replace
 Plug 'osyo-manga/vim-over'
+
+" Completion
+Plug 'ajh17/VimCompletesMe'
+
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Plug 'elmcast/elm-vim'
 " Plug 'OmniSharp/omnisharp-vim'
