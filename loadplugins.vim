@@ -26,6 +26,8 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-repeat'
 " Expand the mappings for [] movements
 Plug 'tpope/vim-unimpaired'
+" Sensible defaults, replacing a lot of my settings
+Plug 'tpope/vim-sensible'
 
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }

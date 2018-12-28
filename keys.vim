@@ -11,33 +11,39 @@ nnoremap <Leader>hl :nohl<Cr>
 nnoremap <Leader>a ggVG
 " Open a new tab
 nnoremap <Leader>te :tab split<Cr>
+nnoremap <Leader>gt :tab split<Cr>
 " Close the current tab
 nnoremap <Leader>tc :tabc<Cr>
 nnoremap <Leader>tk :tabc<Cr>
 
-" Escape with Alt + normal mode key even in gvim
-noremap  <M-j> <Esc>j
-noremap! <M-j> <Esc>j
-noremap  <M-k> <Esc>k
-noremap! <M-k> <Esc>k
-noremap  <M-h> <Esc>h
-noremap! <M-h> <Esc>h
-noremap  <M-l> <Esc>l
-noremap! <M-l> <Esc>l
-noremap  <M-o> <Esc>o
-noremap! <M-o> <Esc>o
-noremap  <M-O> <Esc>O
-noremap! <M-O> <Esc>O
-noremap  <M-w> <Esc>w
-noremap! <M-w> <Esc>w
-noremap  <M-e> <Esc>e
-noremap! <M-e> <Esc>e
-noremap  <M-b> <Esc>b
-noremap! <M-b> <Esc>b
-noremap  <M-a> <Esc>A
-noremap! <M-a> <Esc>A
-noremap  <M-i> <Esc>I
-noremap! <M-i> <Esc>I
+" Escape with Alt + normal mode key in gvim
+if has("gui_running")
+    noremap  <M-j> <Esc>j
+    noremap! <M-j> <Esc>j
+    noremap  <M-k> <Esc>k
+    noremap! <M-k> <Esc>k
+    noremap  <M-h> <Esc>h
+    noremap! <M-h> <Esc>h
+    noremap  <M-l> <Esc>l
+    noremap! <M-l> <Esc>l
+    noremap  <M-o> <Esc>o
+    noremap! <M-o> <Esc>o
+    noremap  <M-O> <Esc>O
+    noremap! <M-O> <Esc>O
+    noremap  <M-w> <Esc>w
+    noremap! <M-w> <Esc>w
+    noremap  <M-e> <Esc>e
+    noremap! <M-e> <Esc>e
+    noremap  <M-b> <Esc>b
+    noremap! <M-b> <Esc>b
+    noremap  <M-a> <Esc>A
+    noremap! <M-a> <Esc>A
+    noremap  <M-i> <Esc>I
+    noremap! <M-i> <Esc>I
+endif
+
+" Terminal mappings
+tnoremap <C-b> <C-\><C-n>
 
 " Split controls
 nnoremap <Leader>h :vsp<Cr>
@@ -90,8 +96,9 @@ nnoremap s :OverCommandLine<Cr>%s/
 vnoremap s :OverCommandLine<Cr>s/
 
 " For doing stuff with what's under the cursor
-noremap <leader>8f :Ag <C-r><C-w><Cr>
-noremap <leader>*f :Ag <C-r><C-w><Cr>
+nnoremap <leader>8f :Ag <C-r><C-w><Cr>
+nnoremap <leader>*f :Ag <C-r><C-w><Cr>
+vnoremap <leader>f y:Ag <C-r>"<Cr>
 
 " Make working directory the directory of the current file
 nnoremap <Leader>5 :cd %:p:h<Cr>

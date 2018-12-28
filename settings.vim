@@ -1,41 +1,38 @@
+if has('win32')
+    colorscheme desert
+endif
+
 " Cool colors
 set termguicolors
 colorscheme gruvbox
+set background=dark
+
 " Search all lower = insensitive, any upper = sensitive
 set ignorecase
 set smartcase
-" show list of options when autocompleting in cmds
-set wildmenu
-" Show these whitespace characters. :set list! to toggle
-set listchars=tab:>-,trail:~,extends:>,precedes:<
-set list
-" Keep the cursor away from the edges
-set scrolloff=1
-set sidescrolloff=3
 " Use filetype specific indentation
 set expandtab
 set shiftwidth=4
 set tabstop=4
 filetype plugin indent on
-" gvim settings to remove menu bar and toolbar
-set guioptions-=m
-set guioptions-=T
-" set gvim font
-set guifont=Source\ Code\ Pro\ 13,Consolas:h14:cANSI
-
-" incremental search
-set incsearch
-" let backspace remove everything
-set backspace=indent,eol,start
-" line and column number in the bottom right
-set ruler
-set number
 " hide buffers that are unsaved
 set hidden
 " disable annoying sticky comments
 autocmd BufNewFile,BufRead * setlocal formatoptions-=ro
-" Use non-gui tabline
-set guioptions-=e
+
+" Gui options
+if has("gui_running")
+    " Use non-gui tabline
+    set guioptions-=e
+    " gvim settings to remove menu bar and toolbar
+    set guioptions-=m
+    set guioptions-=T
+    " gvim remove lefthand scrollbar
+    set guioptions-=L
+    set guioptions-=r
+    " set gvim font
+    set guifont=Source\ Code\ Pro\ 13,Consolas:h14:cANSI
+endif
 
 " associate .p8 files with the lua filetype
 au BufNewFile,BufRead *.p8 setlocal ft=lua
@@ -78,10 +75,6 @@ let g:OmniSharp_selector_ui = 'fzf'
 " previous-history instead of down and up. If you don't like the change,
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
-
-if has('win32')
-    colorscheme desert
-endif
 
 " Git branch in airline
 let g:airline#extensions#branch#enabled = 1
