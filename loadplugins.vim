@@ -9,7 +9,7 @@ Plug 'morhetz/gruvbox'
 Plug 'jaxbot/semantic-highlight.vim'
 
 " Cool status line
-Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline' IN JAIL FOR SUSPECTED CRASHING VIM
 
 """"" TPOPE stuff
 " Async dispatch from vim 7.x

@@ -19,6 +19,10 @@ filetype plugin indent on
 set hidden
 " disable annoying sticky comments
 autocmd BufNewFile,BufRead * setlocal formatoptions-=ro
+" wildmode more like bash (tab keeps completing as long as it's unambiguous)
+set wildmode=list,longest
+" make the mouse work in console vim
+set mouse=a
 
 " Gui options
 if has("gui_running")
