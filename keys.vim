@@ -16,6 +16,9 @@ nnoremap <Leader>gt :tab split<Cr>
 nnoremap <Leader>tc :tabc<Cr>
 nnoremap <Leader>tk :tabc<Cr>
 
+" Open a terminal in the current split
+nnoremap <Leader><Cr> :ter ++curwin<Cr>
+
 " Escape with Alt + normal mode key in gvim
 if has("gui_running")
     noremap  <M-j> <Esc>j
