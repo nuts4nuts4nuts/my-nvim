@@ -88,6 +88,9 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
 highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 
+" Make fzf Ag ignore filenames
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
 " Use eslint through ale
 let g:ale_fixers = {
     \ 'javascript': ['eslint']

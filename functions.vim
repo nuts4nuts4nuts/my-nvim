@@ -12,11 +12,4 @@ function GS()
     :tab split
     :Gstatus
 endfunction
-command GS :call GS()<Cr>
-
-" Open the current buffer in a new tab and call git status
-function GS()
-    :tab split
-    :Gstatus
-endfunction
-command GS :call GS()<Cr>
+command GS :call GS()

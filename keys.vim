@@ -46,7 +46,7 @@ if has("gui_running")
 endif
 
 " Terminal mappings
-tnoremap <C-b> <C-\><C-n>
+tnoremap <C-n> <C-\><C-n>
 
 " Split controls
 nnoremap <Leader>h :vsp<Cr>
@@ -69,10 +69,6 @@ nnoremap <Leader>s :SemanticHighlightToggle<Cr>
 
 " Bring Y in line with D and C
 nnoremap Y y$
-
-" Make indenting in visual mode more fun
-vnoremap > >gv
-vnoremap < <gv
 
 " Fuzzy finding
 " Files
@@ -103,9 +99,13 @@ nnoremap <leader>8f :Ag <C-r><C-w><Cr>
 nnoremap <leader>*f :Ag <C-r><C-w><Cr>
 vnoremap <leader>f y:Ag <C-r>"<Cr>
 
+" CD COMMANDS
 " Make working directory the directory of the current file
-nnoremap <Leader>5 :cd %:p:h<Cr>
-nnoremap <Leader>% :cd %:p:h<Cr>
+nnoremap cdh  :cd %:p:h<Cr>
+nnoremap cd.. :cd ..<Cr>
+nnoremap cd-  :cd -<Cr>
+nnoremap cdp  :cd %:p:h/..<Cr>
+nnoremap cd<Space> :cd 
 
 " swap gj j, gk k
 nnoremap j gj
@@ -117,6 +117,10 @@ nnoremap gk k
 let g:UltiSnipsExpandTrigger="<C-k>"
 let g:UltiSnipsJumpForwardTrigger="<C-n>"
 let g:UltiSnipsJumpBackwardTrigger="<C-p>"
+
+" Shorten window swapping command
+let g:windowswap_map_keys = 0 " prevent default bindings
+nnoremap <silent> <leader>w :call WindowSwap#EasyWindowSwap()<CR>
 
 " For conceal markers.
 if has('conceal')

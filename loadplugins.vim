@@ -45,6 +45,12 @@ Plug 'ajh17/VimCompletesMe'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
+" Diff swap files
+Plug 'chrisbra/Recover.vim'
+
+" Swap splits without thinking about layout
+Plug 'wesQ3/vim-windowswap'
+
 " Plug 'elmcast/elm-vim'
 " Plug 'OmniSharp/omnisharp-vim'
 " Plug 'w0rp/ale'
